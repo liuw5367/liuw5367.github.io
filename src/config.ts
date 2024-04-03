@@ -4,10 +4,10 @@ export const SITE: Site = {
   website: "https://liuw5367.github.io/", // replace this with your deployed domain
   author: "liuw5367",
   desc: "Personal site.",
-  title: "liuw5367",
+  title: "在那遥远的地方",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 3,
+  postPerPage: 5,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
 

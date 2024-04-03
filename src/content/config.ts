@@ -18,7 +18,7 @@ const blog = defineCollection({
         })
         .or(z.string())
         .optional(),
-      description: z.string(),
+      description: z.string().default(""),
       canonicalURL: z.string().optional(),
     }),
 });
