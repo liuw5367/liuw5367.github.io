@@ -1,0 +1,50 @@
+<script>
+  function sendMessage(message: Object) {
+    const iframe = document.querySelector(
+      "iframe.giscus-frame"
+    ) as HTMLIFrameElement;
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
+  }
+
+  function getCurrentTheme() {
+    const theme =
+      document.firstElementChild &&
+      document.firstElementChild.getAttribute("data-theme");
+    return theme;
+  }
+
+  function createGusicScript() {
+    const container = document.querySelector("#main-content");
+    const theme = getCurrentTheme() == "light" ? "light" : "dark";
+    let script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+
+    script.setAttribute("data-repo", "liuw5367/liuw5367.github.io");
+    script.setAttribute("data-repo-id", "R_kgDOLop1Ew");
+    script.setAttribute("data-category-id", "DIC_kwDOLop1E84CecrD");
+
+    script.setAttribute("data-category", "Announcements");
+    script.setAttribute("data-mapping", "title");
+    script.setAttribute("data-strict", "0");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "top");
+
+    script.setAttribute("data-theme", theme);
+    script.setAttribute("data-lang", "zh-CN");
+
+    script.setAttribute("data-loading", "lazy");
+    script.setAttribute("crossorigin", "anonymous");
+    script.async = true;
+    container && container.appendChild(script);
+  }
+
+  createGusicScript();
+  document.querySelector("#theme-btn")?.addEventListener("click", () => {
+    const theme = getCurrentTheme();
+    sendMessage({
+      setConfig: { theme: theme == "light" ? "dark_dimmed" : "light" },
+    });
+  });
+</script>
